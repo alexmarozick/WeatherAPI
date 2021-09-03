@@ -1,14 +1,14 @@
 # WeatherAPI   
 REST API to display US weather data to users   
 
-Functionality:   
+# Functionality:   
 The API will provide a list of REST endpoints:   
   - GET /weather   list the cities (with pagination if possible)   
   - POST  /weather/city   to add a city that the job will scrape   
   - GET   /weather/city   to get the last temperature of the city, returning 404 if the city has not been added yet   
 
 
-Design/Implementation   
+# Design/Implementation   
    
 Weather API:   
   Will be relying on this API for the data that will fill the SQLite database. There will be a chron job that makes a request for data every 5 minutes to this API and will then update the database with a new table.

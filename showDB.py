@@ -1,4 +1,6 @@
-import app as a
+''' DEVELOPER TOOL TO SEE CONTENTS OF DB'''
+
+import DBfunctions as dbf
 
 def show_all_weather():
     '''
@@ -7,7 +9,7 @@ def show_all_weather():
 
     Delete all rows in the weather table
     '''
-    conn = a.create_connection('data/weather.db')
+    conn = dbf.create_connection('data/weather.db')
     sql = 'SELECT * FROM weather'
     cur = conn.cursor()
     data = cur.execute(sql)

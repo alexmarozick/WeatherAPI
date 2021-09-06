@@ -1,6 +1,5 @@
 # Core Pkgs
 import streamlit as st
-#import pandas as pd # I dont think I need this
 
 # DB Management
 import sqlite3
@@ -9,21 +8,23 @@ from sqlite3 import Error
 #c = conn.cursor()
 
 
-def create_connection():
+def create_connection(database):
     """ create a database connection to a SQLite database """
     conn = None
     try:
-        conn = sqlite3.connect('data/weather.sqlite')
-        print("creating connection...")
+        conn = sqlite3.connect(database)
+        print("establishing connection...")
         return conn
     except Error as e:
         print(e)
-    finally:
-        if conn:
-            conn.close()
+    # finally:
+    #     if conn:
+    #         conn.close()
 
 def display_database(conn):
     print("displaying database...", conn)
+    cur = conn.cursor()
+    cur.execute('''CREATE TABLE weather (id INTEGER PRIMARY KEY, city_name TEXT, state TEXT, temp INTEGER, general TEXT)''')
 
     #TODO display data every update
     #TODO pagination

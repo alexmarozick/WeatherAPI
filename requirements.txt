@@ -2,4 +2,3 @@ python==3.8.5
 pip==21.2.4
 
 streamlit==0.62.1
-python-crontab==2.5.1

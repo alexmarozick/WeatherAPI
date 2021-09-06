@@ -63,7 +63,7 @@ def update():
     # need to update DB with new results
     print("updating DB..")
 
-    cities = [("Ca","santa cruz"), ("ca","san Jose")]
+    cities = [("Ca","santa cruz"), ("ca","san Jose"), ("OR", "EugEnE"), ("or", "portland")]
     # fill weatherTemp with info by scraping from website    
     results = scrape(clean_input(cities))
     

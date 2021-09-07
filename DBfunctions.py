@@ -11,6 +11,8 @@ from sqlite3 import Error
 from math import ceil
 import numpy as np
 
+NUM_CITIES = 20
+
 def scrape(cities):
     '''
     Input: [("state","city-name")]
@@ -24,14 +26,22 @@ def scrape(cities):
     base_URL = "https://www.wunderground.com/weather/us/"
     results = []
 
+    num = 0
     for loc in cities:
+        print("num: ", num, "    loc: ", loc)
+        num += 1
+        if(num == NUM_CITIES):
+            break
         state,city = loc
         URL = base_URL + "/"+ state + "/" + city
 
         page = requests.get(URL)
         soup = BeautifulSoup(page.content, "html.parser")
-        temp = soup.find("span", {'class':'wu-value wu-value-to'}).get_text()
-        
+        temp = soup.find("span", {'class':'wu-value wu-value-to'})
+        if(temp == None):
+            continue
+        else:
+            temp = temp.get_text()
         loc_and_temp = (state, city, int(temp))
         results.append(loc_and_temp)
     
@@ -83,6 +93,7 @@ def update_single(loc):
         cur.execute(sqlite_insert, data)
         conn.commit()
         conn.close()
+        return 1
     else:
         conn.close()
         return None

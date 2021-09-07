@@ -6,7 +6,6 @@ import pandas as pd
 # # DB Management
 # import sqlite3
 # from sqlite3 import Error
-import time
 
 from math import ceil
 # import numpy as np
@@ -54,8 +53,7 @@ def display_query_results(query, conn, param):
             # update DB with city or report that city cant be found
             st.warning("Location not in database.. checking now")
             update_success = dbf.update_single(param)
-            # time.sleep(2)
-            #TODO Make it so that when you type
+            
             print("update success: ",update_success)
             if(update_success):
                 conn = dbf.create_connection("data/weather.db")
@@ -69,6 +67,8 @@ def main():
 
     menu = ["Home", "About"]
     choice = st.sidebar.selectbox("Menu", menu)
+
+    # st.image('image.jpg')
 
     if choice == "Home":
         st.subheader("Home")

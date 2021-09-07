@@ -1,16 +1,16 @@
 from genericpath import isfile
 import DBfunctions as dbf
 from os.path import isfile
+import city_lis
 
-
+city_list = city_lis.city_list
 
 def update():
     # need to update DB with new results
     print("updating DB..")
 
-    cities = [("Ca","santa cruz"), ("ca","san Jose"), ("OR", "EugEnE"), ("or", "portland")]
     # fill weatherTemp with info by scraping from website    
-    results = dbf.scrape(dbf.clean_input(cities))
+    results = dbf.scrape(dbf.clean_input(city_list))
     
     
     #checking if file exists

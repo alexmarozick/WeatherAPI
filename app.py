@@ -9,14 +9,14 @@ import json
 
 import DBfunctions as dbf
 
-'''
-app.py: the frontend for the webapp
+# '''
+# app.py: the frontend for the webapp
 
-this file can be run in terminal using:
-    streamlit run app.py
+# this file can be run in terminal using:
+#     streamlit run app.py
 
-In a seperate terminal, run python server.py if you want to use the POST request feature
-'''
+# In a seperate terminal, run python server.py if you want to use the POST request feature
+# '''
 
 def display_full_database(conn):
     '''

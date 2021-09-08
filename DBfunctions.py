@@ -8,10 +8,7 @@ import pandas as pd
 import sqlite3
 from sqlite3 import Error
 
-from math import ceil
-import numpy as np
-
-NUM_CITIES = 20
+NUM_CITIES = 30   # NOTE this is the number of cities that will be in DB
 
 def scrape(cities):
     '''
@@ -58,7 +55,7 @@ def clean_input(locs):
     cleaned_input = []
     for loc in locs:
         state = loc[0].lower().strip()
-        city = loc[1].replace(' ','-').lower().strip()
+        city = loc[1].strip().replace(' ','-').lower()
         cleaned_input.append((state, city))
     return cleaned_input
 
@@ -75,16 +72,19 @@ def delete_all_weather(conn):
     conn.commit()
 
 def update_single(loc):
-    # need to update DB with new results
+    '''
+    Input: [("state","city-name")]
+    Output: 1 on success, None on fail
+
+    This function attempts to scrape temperature of user inputted city
+    and either will return None on fail, or update DB and return 1 on success.
+    '''
     conn = create_connection('data/weather.db')
     cur = conn.cursor()
 
-    # fill weatherTemp with info by scraping from website    
-    results = scrape(clean_input([loc]))  #TODO make sure single loc is good for these methods
-    print("results in update_single", results)
+    results = scrape(clean_input([loc]))
+
     if(results):
-        # fill weather rows
-        print("filling database row...")
         sqlite_insert = '''
                         INSERT INTO weather
                         (State, City, Temperature)
@@ -109,5 +109,6 @@ def create_connection(database):
         print(e)
 
 def get_data(conn):
-        df = pd.read_sql("SELECT * FROM weather", con=conn)
-        return df
+    '''returns dataframe for all rows in weather DB'''
+    df = pd.read_sql("SELECT * FROM weather", con=conn)
+    return df

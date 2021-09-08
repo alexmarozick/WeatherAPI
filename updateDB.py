@@ -5,6 +5,19 @@ import city_lis
 
 city_list = city_lis.city_list
 
+'''
+updateDB.py
+
+This file is called by a Scheduler Task to run every 5 minutes
+and to update the weather.db stored in the data/
+
+This file will check if the DB exists. If it doesn't it will create the DB.
+If it already exists, the script will delete all rows and fill using the city_list.
+The number of entries inserted is capped by the global variable defined in DBfunctions.
+
+'''
+
+
 def update():
     # need to update DB with new results
     print("updating DB..")
@@ -16,7 +29,7 @@ def update():
     #checking if file exists
     if(isfile('data/weather.db')):
         # db exists
-        ("deleting database rows..")
+        print("deleting database rows..")
         conn = dbf.create_connection('data/weather.db')
         cur = conn.cursor()
         dbf.delete_all_weather(conn)  #delete all rows

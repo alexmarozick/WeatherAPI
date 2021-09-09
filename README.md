@@ -16,7 +16,7 @@ To run the frontend, type "streamlit run app.py" into the terminal
         http://localhost:8501
 
 
- To run the server that will handle HTTP requests, type "python server.py" into the terminal
+ To run the server that will handle HTTP requests, type "python server.py" into the terminal 
     routes:
         http://localhost:8080/weather
         http://localhost:8080/weather/<state>/<city>

@@ -65,20 +65,21 @@ def display_query_results(query, conn, param):
             else:
                 st.error("City can't be found")
 
-def main():
-
+def main():    
     st.title("Real-Time Temperature of US Cities")
+
+    st.image(['US.PNG'], width=500)
     
     menu = ["Home", "About"]
     choice = st.sidebar.selectbox("Menu", menu)
 
     if choice == "Home":
-        st.subheader("Home")
+        st.markdown('## Home')
 
         conn = dbf.create_connection("data/weather.db")
         display_full_database(conn)
 
-        st.markdown("# Choose a Location!")
+        st.markdown("## Choose a Location!")
         input_city = (st.text_input("City Name", "Type Here...")).strip().replace(' ','-').lower()
         input_state = (st.text_input("Abbreviation of State", "Type Here...")).lower().strip()
         post = st.checkbox("Submit as POST request?")

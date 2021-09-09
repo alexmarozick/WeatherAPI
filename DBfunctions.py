@@ -8,7 +8,7 @@ import pandas as pd
 import sqlite3
 from sqlite3 import Error
 
-NUM_CITIES = 40   # NOTE this is the number of cities that will be in DB
+NUM_CITIES = 200   # NOTE this is the number of cities that will be in DB
 
 def scrape(cities):
     '''

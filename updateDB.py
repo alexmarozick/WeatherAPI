@@ -1,6 +1,8 @@
 from genericpath import isfile
+import posixpath
+import sqlite3
 import DBfunctions as dbf
-from os.path import isfile
+import os.path
 import city_lis
 
 city_list = city_lis.city_list
@@ -24,20 +26,22 @@ def update():
 
     # fill weatherTemp with info by scraping from website    
     results = dbf.scrape(dbf.clean_input(city_list))
-    
-    
+    filepath = "C:\\Users\\Alex\\OneDrive\\Desktop\\WeatherAPI\\data\\weather.db"
+
     #checking if file exists
-    if(isfile('data/weather.db')):
+    if(os.path.exists(filepath)):
         # db exists
         print("deleting database rows..")
-        conn = dbf.create_connection('data/weather.db')
+        # conn = dbf.create_connection('data/weather.db')
+        conn = sqlite3.connect(filepath)
         cur = conn.cursor()
         dbf.delete_all_weather(conn)  #delete all rows
 
     else:
         # db doesnt exist
         print("creating database..")
-        conn = dbf.create_connection('data/weather.db')
+        # conn = dbf.create_connection('data/weather.db')
+        conn = sqlite3.connect(filepath)
         cur = conn.cursor()
         cur.execute('''
                     CREATE TABLE weather (State TEXT, City TEXT, Temperature INTEGER)

@@ -41,11 +41,11 @@ Web Framework: Bottle
 Cron Job: Schtasks
     Schtasks is the Windows equivalent to linux's cron jobs. I set a task to run the updateDB.py script every 5 minutes. This will keep the DB up to date with the current temperature every 5 minutes.
 
+# Command used for Task Scheduler
+Schtasks /create /tn "Weather SQLite Update" /sc minute /mo 5 /tr "powershell c:\Users\Alex\OneDrive\Desktop\WeatherAPI\updateDBscript.bat"
+
 
 # Issues
 1) Frontend and HTTP request handler run off different urls
 
 2) Initializing DB with many entries is very slow due to scraping one at a time
-
-3) Task scheduler doesnt update DB even though it calls the correct script
-    For now, update DB by calling "python ./updateDB.py"

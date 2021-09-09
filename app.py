@@ -37,6 +37,7 @@ def display_full_database(conn):
     current_start = (page_number-1)*page_size
     current_end = page_number*page_size
     st.write(df[current_start:current_end])
+    
 
 def display_query_results(query, conn, param):
     '''
@@ -113,7 +114,8 @@ def main():
 
 
             else:
-                st.warning("Uh oh.. Fill one of the boxes first!")        
+                st.warning("Uh oh.. Fill one of the boxes first!")   
+        conn.close()     
     else:
         st.subheader("About")
         
@@ -127,6 +129,7 @@ def main():
         st.text("Frontend: Streamlit")
         st.text("Web Framework: Bottle")
         st.text("Web Scraper: BeautifulSoup")
+    
 
 if __name__ == '__main__':
     main()

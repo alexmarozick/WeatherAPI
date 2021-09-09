@@ -103,9 +103,13 @@ def main():
                     df_dic = {}
                     df_dic['params'] = param
                     
-                    postResponse = requests.post(url, json=eval(json.dumps(df_dic)))
-                    if postResponse:
-                        st.write(postResponse.text)
+                    try:
+                        postResponse = requests.post(url, json=eval(json.dumps(df_dic)))
+                    
+                        if (postResponse.status_code == 200):
+                            st.write(postResponse.text)
+                    except:
+                        st.warning("Make sure to start server.py first!")
 
                 else:
                     param = (input_state, input_city)

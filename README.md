@@ -22,10 +22,7 @@ To run the frontend, type "streamlit run app.py" into the terminal
         http://localhost:8080/weather/<state>/<city>
 
 
-
-
 # Design/Implementation   
-   
 BeautifulSoup4:
     I chose to use beautifulsoup to scrape the temperatures off of the site https://www.wunderground.com/weather/us/. 
 
@@ -40,6 +37,7 @@ Web Framework: Bottle
 
 Cron Job: Schtasks
     Schtasks is the Windows equivalent to linux's cron jobs. I set a task to run the updateDB.py script every 5 minutes. This will keep the DB up to date with the current temperature every 5 minutes.
+
 
 # Command used for Task Scheduler
 Schtasks /create /tn "Weather SQLite Update" /sc minute /mo 5 /tr "powershell c:\Users\Alex\OneDrive\Desktop\WeatherAPI\updateDBscript.bat"

@@ -125,8 +125,7 @@ def main():
         st.subheader("About")
         
         st.markdown("## Purpose of Webapp:")
-        st.text("Originally, I created this project for a job application!\nThis project gave me exposure to all of the software described below!")
-        st.text("This website can be used to search for real-time temperatures of all cities across the US.")
+        st.text("This website can be used to search for real-time temperatures of all cities across the US.\n I was also able to gain exposure to SQLite and streamlit for quick frontend development.")
 
         st.markdown('## Tech Stack')
         st.text("Programming Language: Python")

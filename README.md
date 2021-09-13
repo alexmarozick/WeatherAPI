@@ -21,6 +21,13 @@ To run the frontend, type "streamlit run app.py" into the terminal
         http://localhost:8080/weather
         http://localhost:8080/weather/<state>/<city>
 
+# How to Update DB
+    1- Schedule a task on Windows Task Scheduler 
+            Schtasks /create /tn "Weather SQLite DB update" /sc minute /mo 5 /tr "Powershell python c:\Users\Alex\OneDrive\Desktop\WeatherAPI\updateDBscript.bat"
+
+    2- Update the DB manually with the updateDBmanual.py file
+            python .\updateDBmanual.py
+
 
 # Design/Implementation   
 BeautifulSoup4:
@@ -44,6 +51,6 @@ Schtasks /create /tn "Weather SQLite Update" /sc minute /mo 5 /tr "powershell c:
 
 
 # Issues
-1) Frontend and HTTP request handler run off different urls
+1) Frontend and HTTP request handler run off different ports
 
 2) Initializing DB with many entries is very slow due to scraping one at a time
